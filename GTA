@@ -1,0 +1,128 @@
+#Create random number
+
+from random import randint
+n = randint(1000,100000)
+
+#Declare variable
+
+q=n
+x=0
+y=0
+e=0
+o=0
+t=0
+mul_fal_list=[]
+add_2l_list=[]
+number_list=[]
+g=len(str(q))
+
+#Create a list of the number
+
+for i in range(g):
+  number_list.append(q%10)
+  q = q//10
+
+#Hint 1:
+
+def add(m):
+  global x
+  for i in range(len(str(m))):
+    x+=m%10
+    m = m//10
+  print("The sum of terms is",x)
+
+#Hint 2:
+
+def even_or_odd(m):
+  global e
+  global o
+  for i in range(len(str(m))):
+    t=m%10
+    m = m//10
+    if t%2==1:
+      o+=1
+    else:
+      e+=1
+  print("The number have", o, "odd number",". The number have", e,"even number")
+
+#Hint 3:
+
+def mul_fal(m):
+  for i in range(len(str(m))):
+    mul_fal_list.append(m%10)
+    m = m//10
+  print("the multiplicaation of the first and the last number is", mul_fal_list[0]*mul_fal_list[-1])
+
+#Hint 4:
+
+def add_2l(m):
+  for i in range(len(str(m))):
+    add_2l_list.append(m%10)
+    m = m//10
+  print("the sum of two last numbers is", add_2l_list[0] + add_2l_list[1])
+
+#Take input function:
+
+found=0
+def take_input():
+  input_sn_list=[]
+  a=0
+  global y
+  global found
+  ca=input_number=int(input("Enter your guess: "))      #Take input
+  y+=1
+  m=10-y
+  for u in range(len(str(input_number))):               #Create list of input
+    input_sn_list.append(ca%10)
+    ca = ca//10
+  for i in range(g):
+    for u in range(len(str(input_number))):             #Reply appropriate message
+      if number_list[i]==input_sn_list[u]:
+        if i == u:
+          a+=1
+  if input_number == n:                                 #Reply answer
+    print("You won in", y, "guesses")
+    found=1
+  else:
+    print("You have",a,"number in the correct position")
+    print("You have",m,"more guess")
+    found=0
+
+#Main loop:
+
+print("----------------------------------------------------------------")
+print("your number have", len(str(n)),"charactors")
+take_input()                    #First loop len
+if found == 0:
+  print("----------------------------------------------------------------")
+  add(n)
+  take_input()                  #Second loop add
+  if found ==0:
+    print("----------------------------------------------------------------")
+    even_or_odd(n)
+    take_input()                #Third loop even and odd
+    if found ==0:
+      print("----------------------------------------------------------------")
+      mul_fal(n)
+      take_input()              #Forth loop the multiplication of the first and the last number in the serial number
+      if found ==0:
+        print("----------------------------------------------------------------")
+        add_2l(n)
+        take_input()            #Fifth loop the sum of 2 last number
+        if found ==0:
+          print("----------------------------------------------------------------")
+          take_input()          #Sixth loop 
+          if found ==0:
+            print("----------------------------------------------------------------")
+            take_input()        #Seventh loop
+            if found ==0:
+              print("----------------------------------------------------------------")
+              take_input()      #Eighth loop
+              if found ==0:
+                print("----------------------------------------------------------------")
+                take_input()    #Nineth loop
+                if found ==0:
+                  print("----------------------------------------------------------------")
+                  take_input()  #Tenth loop
+                  if found ==0:
+                    print("The number is",n,". Wish you luck next time!")
